@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusBite Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <h1>🍽 CampusBite</h1>
+
+        <button id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+
+    </header>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="card">
+            <h3>Total Faculty</h3>
+            <h1 id="facultyCount">0</h1>
+        </div>
+
+        <div class="card">
+            <h3>Total Vendors</h3>
+            <h1 id="vendorCount">0</h1>
+        </div>
+
+        <div class="card">
+            <h3>Total Menus</h3>
+            <h1 id="menuCount">0</h1>
+        </div>
+
+        <div class="card">
+            <h3>Invitations</h3>
+            <h1 id="invitationCount">0</h1>
+        </div>
+
+    </section>
+
+    <!-- ================= FACULTY ================= -->
+
+    <section class="panel">
+
+        <div class="panelHeader">
+
+            <h2>Faculty Management</h2>
+
+            <button id="addFacultyBtn">
+                + Add Faculty
+            </button>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="facultyTable"></tbody>
+
+        </table>
+
+    </section>
+
+    <!-- ================= VENDORS ================= -->
+
+    <section class="panel">
+
+        <div class="panelHeader">
+
+            <h2>Vendor Management</h2>
+
+            <button id="addVendorBtn">
+                + Add Vendor
+            </button>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="vendorTable"></tbody>
+
+        </table>
+
+    </section>
+
+</div>
+
+<!-- ================= MODAL ================= -->
+
+<div id="modalOverlay" class="modalOverlay">
+
+    <div class="modal">
+
+        <h2 id="modalTitle">Add User</h2>
+
+        <input
+            id="modalName"
+            type="text"
+            placeholder="Name">
+
+        <input
+            id="modalEmail"
+            type="email"
+            placeholder="Email">
+
+        <input
+            id="modalPassword"
+            type="password"
+            placeholder="Password">
+
+        <div class="modalButtons">
+
+            <button
+                id="cancelModal"
+                class="cancelBtn"
+                type="button">
+                Cancel
+            </button>
+
+            <button
+                id="saveModal"
+                type="button">
+                Save
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- IMPORTANT: Script MUST be last -->
+
+<script src="js/admin.js"></script>
+
+</body>
+
+</html>

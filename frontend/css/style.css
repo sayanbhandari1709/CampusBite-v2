@@ -1,0 +1,164 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
+
+body{
+
+    background:#0f172a;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+}
+
+.login-card{
+
+    width:430px;
+
+    background:#1e293b;
+
+    padding:40px;
+
+    border-radius:18px;
+
+    box-shadow:0 0 25px rgba(0,0,0,.35);
+
+}
+
+.logo{
+
+    text-align:center;
+
+    color:#ff7a00;
+
+    margin-bottom:15px;
+
+    font-size:42px;
+
+}
+
+.logo i{
+
+    margin-right:8px;
+
+}
+
+#portalTitle{
+
+    color:white;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    font-weight:500;
+
+}
+
+.role-switch{
+
+    display:flex;
+
+    margin-bottom:30px;
+
+    background:#334155;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+.role{
+
+    flex:1;
+
+    padding:16px;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.role.active{
+
+    background:#ff7a00;
+
+}
+
+.role:hover{
+
+    background:#ff8c1a;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:16px;
+
+    margin-bottom:20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#334155;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+input::placeholder{
+
+    color:#9ca3af;
+
+}
+
+.login-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ff7a00;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    background:#ff9200;
+
+}

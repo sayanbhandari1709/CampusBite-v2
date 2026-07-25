@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusBite Vendor Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="topbar">
+
+        <div class="logo">
+
+            <h1>🍽 CampusBite</h1>
+
+        </div>
+
+        <button id="logoutBtn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </header>
+
+    <section class="cards">
+
+        <div class="card">
+
+            <div class="cardIcon orange">
+
+                <i class="fa-solid fa-utensils"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Menu Items</h3>
+
+                <h1 id="menuCount">0</h1>
+
+                <p>Total Items Published</p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="cardIcon green">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Accepted</h3>
+
+                <h1 id="acceptedCount">0</h1>
+
+                <p>Orders Confirmed</p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="cardIcon red">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Declined</h3>
+
+                <h1 id="declinedCount">0</h1>
+
+                <p>Orders Declined</p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="cardIcon yellow">
+
+                <i class="fa-solid fa-clock"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Pending</h3>
+
+                <h1 id="pendingCount">0</h1>
+
+                <p>Awaiting Response</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="panel">
+
+        <h2>Create Menu Item</h2>
+
+        <div class="formGrid">
+
+            <input
+                id="name"
+                placeholder="Food Name">
+
+            <input
+                id="price"
+                type="number"
+                placeholder="Price (₹)">
+
+            <input
+                id="category"
+                placeholder="Category">
+
+            <input
+                id="image"
+                placeholder="Image URL">
+
+        </div>
+
+        <textarea
+            id="description"
+            placeholder="Description"></textarea>
+
+        <button id="publishBtn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Publish Menu Item
+
+        </button>
+
+    </section>
+
+    <div class="dashboardGrid">
+
+        <section class="panel">
+
+            <div class="panelHeader">
+
+                <h2>Today's Menu</h2>
+
+                <button id="sendMenuBtn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Send Today's Menu
+
+                </button>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Price</th>
+
+                    <th>Category</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="menuTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <section class="panel">
+
+            <h2>Faculty Responses</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Email</th>
+
+                    <th>Status</th>
+
+                    <th>Token / Order ID</th>
+
+                    <th>Responded At</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="responseTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </div>
+
+    <footer>
+
+        © 2026 CampusBite • Making Campus Food Smarter 🍽
+
+    </footer>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
