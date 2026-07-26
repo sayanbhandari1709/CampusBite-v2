@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "https://campusbite-v2.onrender.com/api";
 
 const token = localStorage.getItem("token");
 

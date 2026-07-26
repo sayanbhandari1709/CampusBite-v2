@@ -4,7 +4,7 @@ const transporter = require("../config/mail");
 const Invitation = require("../models/Invitation");
 
 const BASE_URL =
-  process.env.BASE_URL || "http://localhost:5000";
+  process.env.BASE_URL || "https://campusbite-v2.onrender.com";
 
 const sendInvitationEmail = async (faculty, menu, vendor) => {
   const token = crypto.randomBytes(32).toString("hex");

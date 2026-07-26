@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://campusbite-v2.onrender.com/api";
 
 let currentRole = "admin";
 
