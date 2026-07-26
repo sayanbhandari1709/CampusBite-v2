@@ -3,7 +3,7 @@ const API = "https://campusbite-v2.onrender.com/api";
 const token = localStorage.getItem("token");
 
 if (!token) {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // ===============================
@@ -110,7 +110,7 @@ function escapeHTML(value) {
 document.getElementById("logoutBtn").onclick = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    location.href = "login.html";
+    location.href = "index.html";
 };
 
 // ===============================
@@ -124,7 +124,7 @@ if (user.role !== "admin") {
     setTimeout(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }, 1200);
 }
 

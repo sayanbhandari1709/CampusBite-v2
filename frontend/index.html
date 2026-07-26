@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusBite Login</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <h1 class="logo">
+            <i class="fa-solid fa-utensils"></i>
+            CampusBite
+        </h1>
+
+        <p id="portalTitle">
+            Admin Portal
+        </p>
+
+        <div class="role-switch">
+
+            <button
+                type="button"
+                id="adminBtn"
+                class="role active">
+
+                <i class="fa-solid fa-user-shield"></i>
+                Admin
+
+            </button>
+
+            <button
+                type="button"
+                id="vendorBtn"
+                class="role">
+
+                <i class="fa-solid fa-store"></i>
+                Vendor
+
+            </button>
+
+        </div>
+
+        <form id="loginForm">
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                required>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required>
+
+            <button
+                type="submit"
+                class="login-btn">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+
+</div>
+
+<script src="js/login.js"></script>
+
+
+</body>
+
+</html>

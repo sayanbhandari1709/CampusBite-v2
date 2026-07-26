@@ -3,7 +3,7 @@ const API = "https://campusbite-v2.onrender.com/api";
 const token = localStorage.getItem("token");
 
 if (!token) {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // =============================
@@ -157,7 +157,7 @@ function tokenText(response) {
 document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 });
 
 // =============================
