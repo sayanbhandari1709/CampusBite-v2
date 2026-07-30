@@ -56,6 +56,8 @@ exports.sendMenuToFaculties = async (req, res) => {
     startOfDay.setHours(0, 0, 0, 0);
 
     let sentCount = 0;
+    let failedCount = 0;
+    const failedEmails = [];
 
     for (const faculty of faculties) {
       const alreadySent = await Invitation.findOne({
@@ -71,14 +73,29 @@ exports.sendMenuToFaculties = async (req, res) => {
         continue;
       }
 
-      await sendInvitationEmail(faculty, menu, vendor);
-      sentCount++;
+      try {
+        await sendInvitationEmail(faculty, menu, vendor);
+        sentCount++;
+      } catch (emailError) {
+        failedCount++;
+        failedEmails.push({
+          email: faculty.email,
+          reason: emailError.message,
+        });
+
+        console.error(
+          `Failed to send email to ${faculty.email}`,
+          emailError
+        );
+      }
     }
 
     return res.status(200).json({
       success: true,
       message: `${sentCount} invitation(s) sent successfully.`,
       sentCount,
+      failedCount,
+      failedEmails,
     });
   } catch (err) {
     console.error(err);
@@ -119,7 +136,6 @@ exports.acceptInvitation = async (req, res) => {
     await invitation.save();
 
     const menuDoc = invitation.menu;
-
     const tokenNumber = await getNextTokenNumber();
 
     const order = await Order.create({
@@ -344,4 +360,3 @@ exports.getFacultyResponses = async (req, res) => {
     });
   }
 };
-
