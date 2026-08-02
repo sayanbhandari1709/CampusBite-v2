@@ -1,50 +1,31 @@
 const API_URL = "https://campusbite-v2.onrender.com/api";
 
 const params = new URLSearchParams(window.location.search);
-const roleFromUrl = params.get("role");
+const roleFromUrl = params.get("role") === "vendor" ? "vendor" : "admin";
 
-let currentRole = roleFromUrl === "vendor" ? "vendor" : "admin";
-
-const adminBtn = document.getElementById("adminBtn");
-const vendorBtn = document.getElementById("vendorBtn");
 const portalTitle = document.getElementById("portalTitle");
+const portalHint = document.getElementById("portalHint");
+const roleBadgeText = document.getElementById("roleBadgeText");
+const roleBadgeIcon = document.querySelector("#roleBadge i");
 const loginForm = document.getElementById("loginForm");
 const message = document.getElementById("message");
 
-function syncRoleUI() {
-    if (currentRole === "vendor") {
-        vendorBtn.classList.add("active");
-        adminBtn.classList.remove("active");
+function applyRoleUI() {
+    if (roleFromUrl === "vendor") {
         portalTitle.textContent = "Vendor Portal";
+        portalHint.textContent = "Vendor login";
+        roleBadgeText.textContent = "Vendor";
+        roleBadgeIcon.className = "fa-solid fa-store";
     } else {
-        adminBtn.classList.add("active");
-        vendorBtn.classList.remove("active");
         portalTitle.textContent = "Admin Portal";
+        portalHint.textContent = "Admin login";
+        roleBadgeText.textContent = "Admin";
+        roleBadgeIcon.className = "fa-solid fa-user-shield";
     }
 }
 
-function setRole(role) {
-    currentRole = role;
-    syncRoleUI();
+applyRoleUI();
 
-    const newUrl = `${window.location.pathname}?role=${role}`;
-    window.history.replaceState({}, "", newUrl);
-}
-
-// Initial UI
-syncRoleUI();
-
-// Switch to Admin
-adminBtn.addEventListener("click", () => {
-    setRole("admin");
-});
-
-// Switch to Vendor
-vendorBtn.addEventListener("click", () => {
-    setRole("vendor");
-});
-
-// Login
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     message.textContent = "";
@@ -56,12 +37,12 @@ loginForm.addEventListener("submit", async (e) => {
         const response = await fetch(`${API_URL}/auth/login`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 email,
-                password,
-            }),
+                password
+            })
         });
 
         const data = await response.json();
@@ -73,7 +54,7 @@ loginForm.addEventListener("submit", async (e) => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
 
-        if (currentRole === "admin") {
+        if (roleFromUrl === "admin") {
             if (data.user.role !== "admin") {
                 throw new Error("This account is not an admin.");
             }
