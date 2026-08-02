@@ -1,11 +1,26 @@
 const crypto = require("crypto");
+const brevo = require("@getbrevo/brevo");
 
-const transporter = require("../config/mail");
+console.log("🚀 USING BREVO EMAIL SERVICE");
+
 const Invitation = require("../models/Invitation");
 
 const BASE_URL =
   process.env.BASE_URL || "https://campusbite-v2.onrender.com";
 
+// ===============================
+// Configure Brevo API
+// ===============================
+const apiInstance = new brevo.TransactionalEmailsApi();
+
+apiInstance.setApiKey(
+  brevo.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.BREVO_API_KEY
+);
+
+// ===============================
+// Send Invitation Email
+// ===============================
 const sendInvitationEmail = async (faculty, menu, vendor) => {
   const token = crypto.randomBytes(32).toString("hex");
 
@@ -22,68 +37,86 @@ const sendInvitationEmail = async (faculty, menu, vendor) => {
   const yesLink = `${BASE_URL}/api/invitations/${token}/yes`;
   const noLink = `${BASE_URL}/api/invitations/${token}/no`;
 
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: faculty.email,
-    subject: "🍽 CampusBite - Today's Menu",
+  const email = new brevo.SendSmtpEmail();
 
-    html: `
-      <div style="font-family:Arial,sans-serif;padding:20px">
+  email.sender = {
+    name: vendor.name || "CampusBite",
+    email: process.env.SENDER_EMAIL,
+  };
 
-        <h2>CampusBite</h2>
+  email.to = [
+    {
+      email: faculty.email,
+      name: faculty.name,
+    },
+  ];
 
-        <p>Hello <b>${faculty.name}</b>,</p>
+  email.subject = "🍽 CampusBite - Today's Menu";
 
-        <p>Today's available menu item:</p>
+  email.htmlContent = `
+    <div style="font-family:Arial,sans-serif;padding:20px">
 
-        <hr>
+      <h2>CampusBite</h2>
 
-        <h3>${menu.name}</h3>
+      <p>Hello <b>${faculty.name}</b>,</p>
 
-        <p>${menu.description}</p>
+      <p>Today's available menu item:</p>
 
-        <p><b>Category:</b> ${menu.category}</p>
+      <hr>
 
-        <p><b>Price:</b> ₹${menu.price}</p>
+      <h3>${menu.name}</h3>
 
-        <br>
+      <p>${menu.description}</p>
 
-        <a
-            href="${yesLink}"
-            style="
-                background:#16a34a;
-                color:white;
-                padding:12px 24px;
-                text-decoration:none;
-                border-radius:8px;
-                margin-right:10px;
-            "
-        >
-            ✅ YES
-        </a>
+      <p><b>Category:</b> ${menu.category}</p>
 
-        <a
-            href="${noLink}"
-            style="
-                background:#dc2626;
-                color:white;
-                padding:12px 24px;
-                text-decoration:none;
-                border-radius:8px;
-            "
-        >
-            ❌ NO
-        </a>
+      <p><b>Price:</b> ₹${menu.price}</p>
 
-        <br><br>
+      <br>
 
-        <small>
-            This invitation expires in 24 hours.
-        </small>
+      <a
+        href="${yesLink}"
+        style="
+          background:#16a34a;
+          color:white;
+          padding:12px 24px;
+          text-decoration:none;
+          border-radius:8px;
+          margin-right:10px;
+        "
+      >
+        ✅ YES
+      </a>
 
-      </div>
-    `,
-  });
+      <a
+        href="${noLink}"
+        style="
+          background:#dc2626;
+          color:white;
+          padding:12px 24px;
+          text-decoration:none;
+          border-radius:8px;
+        "
+      >
+        ❌ NO
+      </a>
+
+      <br><br>
+
+      <small>
+        This invitation expires in 24 hours.
+      </small>
+
+    </div>
+  `;
+
+  try {
+    const response = await apiInstance.sendTransacEmail(email);
+    console.log("✅ Brevo Email Sent:", response);
+  } catch (error) {
+    console.error("❌ Brevo Email Error:", error);
+    throw error;
+  }
 };
 
 module.exports = {
