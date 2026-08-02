@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusBite Faculty Dashboard</title>
+
+    <link rel="stylesheet" href="css/faculty.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+        <header class="topbar">
+            <div class="logo">
+                <h1>🍽 CampusBite</h1>
+                <p>Faculty Dashboard</p>
+            </div>
+
+            <button id="logoutBtn" class="logoutBtn" type="button">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+        </header>
+
+        <!-- ================= WELCOME ================= -->
+        <section class="welcomeCard">
+            <div>
+                <p class="eyebrow">Hello again</p>
+                <h2 id="facultyName">Faculty Name</h2>
+                <p id="facultyEmail" class="subtext">faculty@email.com</p>
+            </div>
+
+            <div class="statusBadgeWrap">
+                <span id="statusBadge" class="statusBadge status-pending">
+                    Pending
+                </span>
+            </div>
+        </section>
+
+        <!-- ================= STATS ================= -->
+        <section class="stats">
+            <div class="card">
+                <h3>Today's Status</h3>
+                <h1 id="todayStatus">Pending</h1>
+                <p id="todayStatusText">Waiting for your response</p>
+            </div>
+
+            <div class="card">
+                <h3>Current Token</h3>
+                <h1 id="tokenNumber">-</h1>
+                <p id="tokenText">No token generated yet</p>
+            </div>
+
+            <div class="card">
+                <h3>Today's Menu</h3>
+                <h1 id="menuName">-</h1>
+                <p id="menuCategory">Category</p>
+            </div>
+
+            <div class="card">
+                <h3>Vendor</h3>
+                <h1 id="vendorName">-</h1>
+                <p id="vendorEmail">vendor@email.com</p>
+            </div>
+        </section>
+
+        <!-- ================= TODAY'S MENU ================= -->
+        <section class="panel">
+            <div class="panelHeader">
+                <h2>Today's Menu</h2>
+                <button id="editResponseBtn" class="secondaryBtn" type="button">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Edit Response
+                </button>
+            </div>
+
+            <div class="menuCard">
+                <div class="menuImageWrap">
+                    <img id="menuImage" src="" alt="Menu Item" />
+                    <div id="menuImageFallback" class="menuImageFallback">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                </div>
+
+                <div class="menuInfo">
+                    <h3 id="menuTitle">Menu Item</h3>
+                    <p id="menuDescription" class="menuDescription">
+                        Menu description will appear here.
+                    </p>
+
+                    <div class="menuMeta">
+                        <div>
+                            <span class="metaLabel">Price</span>
+                            <span id="menuPrice" class="metaValue">₹0</span>
+                        </div>
+
+                        <div>
+                            <span class="metaLabel">Category</span>
+                            <span id="menuCategory2" class="metaValue">-</span>
+                        </div>
+
+                        <div>
+                            <span class="metaLabel">Vendor</span>
+                            <span id="menuVendor" class="metaValue">-</span>
+                        </div>
+                    </div>
+
+                    <div class="actionRow">
+                        <button id="acceptBtn" class="acceptBtn" type="button">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Accept
+                        </button>
+
+                        <button id="declineBtn" class="declineBtn" type="button">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            Decline
+                        </button>
+                    </div>
+
+                    <p class="helpText">
+                        You can change your response while the invitation is still active.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= INVITATION DETAILS ================= -->
+        <section class="panel">
+            <div class="panelHeader">
+                <h2>Invitation Details</h2>
+            </div>
+
+            <div class="detailGrid">
+                <div class="detailBox">
+                    <span class="detailLabel">Invitation Status</span>
+                    <span id="invitationStatus" class="detailValue">Pending</span>
+                </div>
+
+                <div class="detailBox">
+                    <span class="detailLabel">Sent At</span>
+                    <span id="sentAt" class="detailValue">-</span>
+                </div>
+
+                <div class="detailBox">
+                    <span class="detailLabel">Responded At</span>
+                    <span id="respondedAt" class="detailValue">-</span>
+                </div>
+
+                <div class="detailBox">
+                    <span class="detailLabel">Expires At</span>
+                    <span id="expiresAt" class="detailValue">-</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ORDER HISTORY ================= -->
+        <div class="dashboardGrid">
+            <section class="panel fullWidth">
+                <div class="panelHeader">
+                    <h2>Order History</h2>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Food</th>
+                            <th>Status</th>
+                            <th>Token</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTable">
+                        <tr>
+                            <td colspan="4" class="emptyRow">
+                                Loading history...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- ================= EDIT RESPONSE MODAL ================= -->
+        <div id="modalOverlay" class="modalOverlay">
+            <div class="modal">
+                <h2>Update Response</h2>
+                <p class="modalText">
+                    Change your response for today's invitation.
+                </p>
+
+                <div class="modalButtons">
+                    <button id="modalAcceptBtn" class="acceptBtn" type="button">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Accept
+                    </button>
+
+                    <button id="modalDeclineBtn" class="declineBtn" type="button">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Decline
+                    </button>
+
+                    <button id="closeModalBtn" class="cancelBtn" type="button">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            © 2026 CampusBite • Faculty Dashboard
+        </footer>
+    </div>
+
+    <script src="js/faculty.js"></script>
+</body>
+</html>

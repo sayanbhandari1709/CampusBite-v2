@@ -1,0 +1,396 @@
+/* ===========================
+   CampusBite Faculty Dashboard
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:#111827;
+    color:#fff;
+}
+
+.container{
+    width:95%;
+    max-width:1450px;
+    margin:25px auto;
+}
+
+/* ================= HEADER ================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    color:#f97316;
+    font-size:34px;
+}
+
+.logo p{
+    color:#cbd5e1;
+    margin-top:5px;
+}
+
+.logoutBtn{
+    border:none;
+    background:#ef4444;
+    color:#fff;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.25s;
+}
+
+.logoutBtn:hover{
+    background:#dc2626;
+}
+
+/* ================= WELCOME ================= */
+
+.welcomeCard{
+    background:#1f2937;
+    border-radius:18px;
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.eyebrow{
+    color:#94a3b8;
+    margin-bottom:5px;
+}
+
+.subtext{
+    color:#9ca3af;
+}
+
+.statusBadge{
+    padding:10px 20px;
+    border-radius:40px;
+    font-weight:700;
+}
+
+.status-accepted{
+    background:#16a34a;
+}
+
+.status-declined{
+    background:#dc2626;
+}
+
+.status-pending{
+    background:#f59e0b;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#1f2937;
+    border-radius:18px;
+    padding:22px;
+}
+
+.card h3{
+    color:#94a3b8;
+    margin-bottom:10px;
+}
+
+.card h1{
+    color:#f97316;
+    margin-bottom:10px;
+}
+
+/* ================= PANELS ================= */
+
+.panel{
+    background:#1f2937;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.panelHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.panelHeader h2{
+    color:#f97316;
+}
+
+.secondaryBtn{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.secondaryBtn:hover{
+    background:#1d4ed8;
+}
+
+/* ================= MENU ================= */
+
+.menuCard{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:35px;
+}
+
+.menuImageWrap{
+    width:100%;
+    height:250px;
+    background:#374151;
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.menuImageWrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.menuImageFallback{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:70px;
+    color:#f97316;
+}
+
+.menuDescription{
+    color:#cbd5e1;
+    margin:20px 0;
+    line-height:1.8;
+}
+
+.menuMeta{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin:25px 0;
+}
+
+.metaLabel{
+    display:block;
+    color:#94a3b8;
+    margin-bottom:5px;
+}
+
+.metaValue{
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* ================= BUTTONS ================= */
+
+.actionRow{
+    display:flex;
+    gap:15px;
+    margin-top:25px;
+}
+
+.acceptBtn{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.acceptBtn:hover{
+    background:#15803d;
+}
+
+.declineBtn{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.declineBtn:hover{
+    background:#b91c1c;
+}
+
+.cancelBtn{
+    background:#475569;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.helpText{
+    margin-top:18px;
+    color:#9ca3af;
+}
+
+/* ================= DETAILS ================= */
+
+.detailGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.detailBox{
+    background:#111827;
+    padding:18px;
+    border-radius:14px;
+}
+
+.detailLabel{
+    display:block;
+    color:#94a3b8;
+    margin-bottom:8px;
+}
+
+.detailValue{
+    font-size:17px;
+    font-weight:600;
+}
+
+/* ================= TABLE ================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#374151;
+    color:#fff;
+    padding:14px;
+}
+
+td{
+    background:#1f2937;
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #374151;
+}
+
+.emptyRow{
+    color:#9ca3af;
+}
+
+/* ================= MODAL ================= */
+
+.modalOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal{
+    width:420px;
+    background:#1f2937;
+    padding:30px;
+    border-radius:18px;
+}
+
+.modal h2{
+    color:#f97316;
+    margin-bottom:15px;
+}
+
+.modalText{
+    color:#cbd5e1;
+    margin-bottom:25px;
+}
+
+.modalButtons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+    color:#94a3b8;
+    margin:35px 0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1200px){
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+.detailGrid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.menuCard{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:700px){
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.detailGrid{
+grid-template-columns:1fr;
+}
+
+.topbar{
+flex-direction:column;
+gap:20px;
+}
+
+.panelHeader{
+flex-direction:column;
+gap:15px;
+}
+
+.actionRow{
+flex-direction:column;
+}
+
+.modal{
+width:92%;
+}
+
+}
