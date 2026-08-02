@@ -19,6 +19,7 @@ const menuRoutes = require("./routes/menuRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const invitationRoutes = require("./routes/invitationRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const facultyRoutes = require("./routes/facultyRoutes"); // NEW
 
 // =========================
 // Connect MongoDB
@@ -51,6 +52,7 @@ app.use("/api/menu", menuRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/invitations", invitationRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/faculty", facultyRoutes); // NEW
 
 // =========================
 // 404 Route
