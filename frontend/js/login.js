@@ -1,7 +1,16 @@
 const API_URL = "https://campusbite-v2.onrender.com/api";
 
 const params = new URLSearchParams(window.location.search);
-const roleFromUrl = params.get("role") === "vendor" ? "vendor" : "admin";
+
+const role = params.get("role");
+
+let roleFromUrl = "admin";
+
+if (role === "vendor") {
+    roleFromUrl = "vendor";
+} else if (role === "faculty") {
+    roleFromUrl = "faculty";
+}
 
 const portalTitle = document.getElementById("portalTitle");
 const portalHint = document.getElementById("portalHint");
@@ -11,16 +20,21 @@ const loginForm = document.getElementById("loginForm");
 const message = document.getElementById("message");
 
 function applyRoleUI() {
-    if (roleFromUrl === "vendor") {
+    if (roleFromUrl === "admin") {
+        portalTitle.textContent = "Admin Portal";
+        portalHint.textContent = "Administrator login";
+        roleBadgeText.textContent = "Admin";
+        roleBadgeIcon.className = "fa-solid fa-user-shield";
+    } else if (roleFromUrl === "vendor") {
         portalTitle.textContent = "Vendor Portal";
         portalHint.textContent = "Vendor login";
         roleBadgeText.textContent = "Vendor";
         roleBadgeIcon.className = "fa-solid fa-store";
     } else {
-        portalTitle.textContent = "Admin Portal";
-        portalHint.textContent = "Admin login";
-        roleBadgeText.textContent = "Admin";
-        roleBadgeIcon.className = "fa-solid fa-user-shield";
+        portalTitle.textContent = "Faculty Portal";
+        portalHint.textContent = "Faculty login";
+        roleBadgeText.textContent = "Faculty";
+        roleBadgeIcon.className = "fa-solid fa-user-graduate";
     }
 }
 
@@ -59,11 +73,16 @@ loginForm.addEventListener("submit", async (e) => {
                 throw new Error("This account is not an admin.");
             }
             window.location.href = "admin_dashboard.html";
-        } else {
+        } else if (roleFromUrl === "vendor") {
             if (data.user.role !== "vendor") {
                 throw new Error("This account is not a vendor.");
             }
             window.location.href = "vendor_dashboard.html";
+        } else {
+            if (data.user.role !== "faculty") {
+                throw new Error("This account is not a faculty member.");
+            }
+            window.location.href = "faculty_dashboard.html";
         }
     } catch (err) {
         message.style.color = "#ff4d4d";
