@@ -1,92 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CampusBite Login</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusBite | Choose Portal</title>
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #111827 45%, #1f2937 100%);
+            color: #fff;
+        }
 
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 18px;
+        }
+
+        .hero-card {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            margin: 0 0 26px 0;
+            color: #cbd5e1;
+            font-size: 1rem;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .portal-box {
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 16px 34px rgba(0,0,0,0.16);
+            display: flex;
+            flex-direction: column;
+            min-height: 260px;
+        }
+
+        .portal-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .admin .portal-icon {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
+
+        .vendor .portal-icon {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+        }
+
+        .portal-box h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.6rem;
+        }
+
+        .portal-box p {
+            margin: 0 0 18px 0;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .portal-box ul {
+            margin: 0 0 24px 18px;
+            padding: 0;
+            color: #334155;
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .portal-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-weight: 700;
+            color: #fff;
+            transition: transform .2s ease, opacity .2s ease;
+        }
+
+        .portal-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .admin .portal-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
+
+        .vendor .portal-btn {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+        }
+
+        .footer-note {
+            margin-top: 22px;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        @media (max-width: 820px) {
+            .portal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                padding: 22px;
+            }
+
+            .brand h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <main class="hero">
+        <section class="hero-card">
+            <div class="brand">
+                <i class="fa-solid fa-utensils fa-xl"></i>
+                <h1>CampusBite</h1>
+            </div>
 
-<div class="login-container">
+            <p class="subtitle">Choose your portal. Admin and Vendor dashboards are separate, because apparently one login screen wasn’t enough chaos.</p>
 
-    <div class="login-card">
+            <div class="portal-grid">
+                <div class="portal-box admin">
+                    <div class="portal-icon">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h2>Admin Dashboard Login</h2>
+                    <p>Manage faculty, vendors, and platform stats.</p>
+                    <ul>
+                        <li>Add or delete faculty</li>
+                        <li>Add or delete vendors</li>
+                        <li>View dashboard analytics</li>
+                    </ul>
+                    <a class="portal-btn" href="login.html?role=admin">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Open Admin Login
+                    </a>
+                </div>
 
-        <h1 class="logo">
-            <i class="fa-solid fa-utensils"></i>
-            CampusBite
-        </h1>
+                <div class="portal-box vendor">
+                    <div class="portal-icon">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h2>Vendor Dashboard Login</h2>
+                    <p>Create menus, send invitations, and track faculty responses.</p>
+                    <ul>
+                        <li>Publish today’s menu</li>
+                        <li>Send invitations to faculty</li>
+                        <li>View accepted / declined responses</li>
+                    </ul>
+                    <a class="portal-btn" href="login.html?role=vendor">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Open Vendor Login
+                    </a>
+                </div>
+            </div>
 
-        <p id="portalTitle">
-            Admin Portal
-        </p>
-
-        <div class="role-switch">
-
-            <button
-                type="button"
-                id="adminBtn"
-                class="role active">
-
-                <i class="fa-solid fa-user-shield"></i>
-                Admin
-
-            </button>
-
-            <button
-                type="button"
-                id="vendorBtn"
-                class="role">
-
-                <i class="fa-solid fa-store"></i>
-                Vendor
-
-            </button>
-
-        </div>
-
-        <form id="loginForm">
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                required>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                required>
-
-            <button
-                type="submit"
-                class="login-btn">
-
-                Login
-
-            </button>
-
-        </form>
-
-        <p id="message"></p>
-
-    </div>
-
-</div>
-
-<script src="js/login.js"></script>
-
-
+            <div class="footer-note">
+                CampusBite • Smart canteen ordering made less tragic
+            </div>
+        </section>
+    </main>
 </body>
-
 </html>
